@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Final Exam</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Web Development Final Exam</h1>
+    </header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <main>
+        <section class="about-projects">
+            <h2>About the Projects</h2>
+            <p>
+                All the projects showed here, were developed by myself, and you will also going to see some list for ideas.
+                Be free to contact me for more ideas!
+            </p>
+        </section>
+        <section class="projects-content">
+            <h3>Projects Table</h3>
+            <table id="projectsTable">
+                <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Technologies</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Portfolio Website</td>
+                        <td>A personal website showcasing skills and projects.</td>
+                        <td>March 2024</td>
+                        <td>
+                            <ul>
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>JavaScript</li>
+                                <li>Python</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Online Store</td>
+                        <td>A mock e-commerce platform with a shopping cart system.</td>
+                        <td>May 2024</td>
+                        <td>
+                            <ul>
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>JavaScript</li>
+                                <li>Python</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Weather App</td>
+                        <td>A web app displaying real-time weather data using APIs.</td>
+                        <td>July 2024</td>
+                        <td>
+                            <ul>
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>JavaScript</li>
+                                <li>Python</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button id="addProjectBtn">Add Project</button>
+
+            <hr style="width: 50%;">
+
+            <div class="nextProjs">
+                <h3>Next Projects</h3>
+                <ul id="projectList">
+                    <li>IOS pinto</li>
+                    <li>Pokedex</li>
+                    <li>Amazon Cloud integration</li>
+                </ul>
+                <button id="toggleProjects">Show next projects</button>
+            </div>
+        </section>
+        <section id="contact">
+            <h3>Contact</h3>
+            <form id="contactForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br>
+                <label for="message">Message:</label><br>
+                <textarea id="message" name="message" required></textarea><br>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>Lucas Meira &copy; <script>document.write(new Date().getFullYear());</script></p>
+        <button id="scrollToTop" style="display:none; position:fixed; bottom:10px; right:10px;">Top</button>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('addProjectBtn').addEventListener('click', () => {
+                const table = document.getElementById('projectsTable').querySelector('tbody');
+                const newRow = `<tr>
+                    <td>Sample Project</td>
+                    <td>Dynamic project addition with JavaScript</td>
+                    <td>December 2024</td>
+                    <td>
+                            <ul>
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>JavaScript</li>
+                                <li>Python</li>
+                            </ul>
+                        </td>
+                </tr>`;
+                table.insertAdjacentHTML('beforeend', newRow);
+            });
+
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    scrollToTopBtn.style.display = 'block';
+                } else {
+                    scrollToTopBtn.style.display = 'none';
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        $(document).ready(function() {
+            $('main').hide().fadeIn(4000);
+
+            $('nav').hover(
+                function() { $(this).stop().slideDown(400); },
+                function() { $(this).stop().slideUp(400); }
+            );
+
+            $('#contactForm').on('submit', function(event) {
+                const name = $('#name').val().trim();
+                const email = $('#email').val().trim();
+                const message = $('#message').val().trim();
+
+                if (!name || !email || !message) {
+                    alert('Please fill in all fields.');
+                    event.preventDefault();
+                }
+            });
+
+            
+
+            $('#projectList').hide();
+            $('#toggleProjects').on('click', function() {
+                $('#projectList').slideToggle(400);
+            });
+        });
+    </script>
+</body>
+</html>
